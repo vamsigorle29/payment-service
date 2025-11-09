@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  payment-service:
+    build: .
+    ports:
+      - "8006:8006"
+    environment:
+      - PORT=8006
+      - DATABASE_URL=sqlite:///./payment.db
+      - PAYMENT_SERVICE_HOST=0.0.0.0
+      - PAYMENT_SERVICE_PORT=8006
+    volumes:
+      - .:/app
+      - payment-db:/data
+
+volumes:
+  payment-db:
+
